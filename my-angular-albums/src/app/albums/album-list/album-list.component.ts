@@ -9,6 +9,7 @@ import { ALBUMS } from "../albums.data";
 })
 export class AlbumListComponent implements OnInit {
   albumsArray: Album[];
+  albumService: any;
   constructor() {}
 
   ngOnInit(): void {
@@ -20,4 +21,12 @@ export class AlbumListComponent implements OnInit {
       "Album " + album.albumName + " was sent from the album card component"
     );
   }
+
+  getAlbums() {
+    this.albumService.getAlbums()
+    .subscribe(
+        albums => this.albumsArray = albums,
+        error => console.log("Error: ", error));
+}
+
 }
